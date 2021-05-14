@@ -1,31 +1,41 @@
 from pulp import LpMaximize, LpProblem, LpStatus, lpSum, LpVariable
+import pandas as pd
 
-model = LpProblem(name="some-problem", sense=LpMaximize)
+problem = LpProblem("Some metale shiet", LpMaximize)
 
-x = LpVariable(name='x', lowBound=0)
-y = LpVariable(name='y', lowBound=0)
+producers_num = int(input("\nEnter number of the producers: "))
+products_num = int(input("\nEnter number of the products: "))
 
+# gain = [0] * products_num
+# constraints = [0] * producers_num
 
-expression = 2 * x + 4 * y            
-type(expression)
+# for i in range(0, products_num):
+#     gain[i] = int(input("\nEnter the gain for {:d} product: ".format(i+1)))
 
-constraint = 2 * x + 4 * y >= 8
-type(constraint)
+# for i in range(0, producers_num):
+#     for j in range(0, products_num):
+#         constraints[i] = int(input("\nEnter the constraint for {:d} producer {:d} product".format(i+1, j+1)))
 
-model += (16 * x + 24 * y <= 96000, "red_constraint")        # dodajemy ograniczenia
-model += (16 * x + 10 * y <= 80000, "blue_constraint")
-model += (x <= 3000, "yellow_constraint")
-model += (y <= 4000, "green_constraint")
-#model += (x = 2/3 * y, "black_constraint")     # to nie wiem jak zrobic xd
+df = pd.read_excel("test.xlsx", nrows=products_num)
+items = list(df['Produkt'])
+pret = dict(zip(items,df['Pret']))
+tasma = dict(zip(items,df['Tasma']))
+gain = dict(zip(items,df['Cena']))
+products_constraint = list(df['Max_produkt'])
+producers_constraint = list(df['Max_fabryka'])
 
-model += 30 * x + 40 * y            # to co maksymalizujemy
+vars = LpVariable.dicts("Produkt", items, lowBound=0, cat='Continuous')
 
-#model += lpSum([x, 2 * y])      # mozna tez tak
+problem += lpSum([gain[i]*vars[i] for i in items])
+problem += lpSum([pret[f] * vars[f] for f in items]) <= producers_constraint[0]
+problem += lpSum([tasma[f] * vars[f] for f in items]) <= producers_constraint[1]
+problem += vars[items[0]] <= products_constraint[0]
+problem += vars[items[1]] <= products_constraint[1]
 
-status = model.solve()
-print(f"status: {model.status}, {LpStatus[model.status]}")
-print(f"objective: {model.objective.value()}")
-for var in model.variables():
-    print(f"{var.name}: {var.value()}")
-for name, constraint in model.constraints.items():
-    print(f"{name}: {constraint.value()}")
+print(problem)
+problem.solve()
+for v in problem.variables():
+    if v.varValue>0:
+        print(v.name, "=", v.varValue)
+
+print("Total profit: ", problem.objective.value())
