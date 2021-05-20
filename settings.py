@@ -1,0 +1,1 @@
+SCR_SIZE = (WIDTH, HEIGHT) = (600, 400)
