@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QPushButton, QLabel, QGridLayout, QHBoxLayout, QVBoxLayout, QMessageBox, QLineEdit, QFormLayout
-from PyQt5.QtGui import QCursor, QPixmap, QFont
+from PyQt5.QtGui import QCursor, QPixmap, QFont, QIntValidator
 from PyQt5 import QtCore
 from settings import *
 from Data import *
@@ -15,9 +15,11 @@ class UIgetInfo(QWidget):
 
         self.produkty = QLabel("Liczba produktow: ")
         self.produkty_no = QLineEdit()
+        self.produkty_no.setValidator(QIntValidator())
 
         self.tworzyciele = QLabel("Liczba prducentow: ")
         self.tworzyciele_no = QLineEdit()
+        self.tworzyciele_no.setValidator(QIntValidator())
 
         self.submit_btn = QPushButton("Dalej")
         self.submit_btn.clicked.connect(self.get_data)
