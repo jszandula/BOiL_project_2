@@ -13,6 +13,7 @@ class UIgetInfo(QWidget):
     def initUI(self):
         self.layout = QFormLayout()
 
+        '''COMPONENTS'''
         self.produkty = QLabel("Liczba produktow(kolummny): ")
         self.produkty_no = QLineEdit()
         self.produkty_no.setValidator(QIntValidator())
@@ -22,17 +23,17 @@ class UIgetInfo(QWidget):
         self.tworzyciele_no.setValidator(QIntValidator())
 
         self.submit_btn = QPushButton("Dalej")
-        # self.submit_btn.clicked.connect(self.get_data)
 
+        '''LAYOUT'''
         self.layout.addWidget(self.produkty)
         self.layout.addWidget(self.produkty_no)
-
         self.layout.addWidget(self.tworzyciele)
         self.layout.addWidget(self.tworzyciele_no)
         self.layout.addWidget(self.submit_btn)
 
         self.setLayout(self.layout)
 
+    # OBSOLETE FUNC
     def get_data(self):
         self.data.produkty_no = int(self.produkty_no.text())
         self.data.tworzyciele_no = int(self.tworzyciele_no.text())

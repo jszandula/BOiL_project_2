@@ -21,5 +21,5 @@ class UIResult(QWidget):
         self.setLayout(self.layout)
 
     def create_prod_lbl(self, number):
-        lbl = QLabel(f"prod{number}: {self.data.produkty_ilosc[number]}")
+        lbl = QLabel(f"product {number}: {self.data.produkty_ilosc[number]}")
         return lbl

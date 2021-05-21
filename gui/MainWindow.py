@@ -22,7 +22,6 @@ class MainWindow(QMainWindow):
         self.show()
 
     def data_input(self):
-        print("data_input")
         self.data.produkty_no = int(self.UIgetInfo.produkty_no.text())
         self.data.tworzyciele_no = int(self.UIgetInfo.tworzyciele_no.text())
         self.setMinimumWidth(SCR_SIZE[0])
@@ -33,7 +32,6 @@ class MainWindow(QMainWindow):
         self.show()
 
     def results(self):
-        print("result")
         self.setMinimumWidth(SCR_SIZE[0])
         self.setMinimumHeight(SCR_SIZE[1])
         self.UIResult = UIResult(self)

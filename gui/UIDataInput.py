@@ -31,7 +31,8 @@ class UIDataInput(QWidget):
 
     def createTable(self):
         vbox = QVBoxLayout()
-        # produkty sa dawane na koncu bo mozna by bylo ich dodawac w nieskonczonosc a kilka rzeczy zawszze musi byc w tej tabeli jak np cena
+        # produkty sa dawane na koncu bo mozna by bylo ich dodawac w nieskonczonosc
+        # a kilka rzeczy zawszze musi byc w tej tabeli jak np cena
         # pomimo tego ze najlepsza cena to gratis :)
         self.columns = ['Produkt', 'zyski_jednostkowe', 'max_produkt', 'min_produkt', 'max_fabryka']
         prod_str = 'produkt'
@@ -40,7 +41,6 @@ class UIDataInput(QWidget):
             self.columns.append(new_str)
 
         self.table = QTableWidget()
-        print(f"prod: {self.data.produkty_no}, tworzyciele: {self.data.tworzyciele_no}")
         self.table.setRowCount(self.data.tworzyciele_no)
         self.table.setColumnCount(len(self.columns))
         self.table.setHorizontalHeaderLabels(self.columns)
@@ -54,9 +54,5 @@ class UIDataInput(QWidget):
         for i in range(self.data.tworzyciele_no):
             for j in range(len(self.columns)):
                 self.data.inserted_data[self.columns[j]].append(int(self.table.item(i, j).text()))
-
-        # for index, name in enumerate(self.columns):
-        #     print(self.columns[index])
-        #     print(self.data.inserted_data[name])
 
         pprint.pprint(self.data.inserted_data)
