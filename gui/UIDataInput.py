@@ -3,6 +3,8 @@ from PyQt5.QtGui import QCursor, QPixmap, QFont, QIntValidator
 from PyQt5 import QtCore
 from settings import *
 from Data import *
+import pprint
+
 
 class UIDataInput(QWidget):
     def __init__(self, parent=None):
@@ -31,11 +33,16 @@ class UIDataInput(QWidget):
         vbox = QVBoxLayout()
         # produkty sa dawane na koncu bo mozna by bylo ich dodawac w nieskonczonosc a kilka rzeczy zawszze musi byc w tej tabeli jak np cena
         # pomimo tego ze najlepsza cena to gratis :)
-        self.columns = ['Produkt', 'zyski_jednostkowe', 'max_produkt', 'min_produkt', 'max_fabryka', 'prod1', 'prod2']
+        self.columns = ['Produkt', 'zyski_jednostkowe', 'max_produkt', 'min_produkt', 'max_fabryka']
+        prod_str = 'produkt'
+        for i in range(self.data.produkty_no):
+            new_str = prod_str + str(i)
+            self.columns.append(new_str)
+
         self.table = QTableWidget()
         print(f"prod: {self.data.produkty_no}, tworzyciele: {self.data.tworzyciele_no}")
         self.table.setRowCount(self.data.tworzyciele_no)
-        self.table.setColumnCount(self.data.produkty_no)
+        self.table.setColumnCount(len(self.columns))
         self.table.setHorizontalHeaderLabels(self.columns)
         vbox.addWidget(self.table)
         self.layout.addLayout(vbox, 0, 0)
@@ -45,9 +52,11 @@ class UIDataInput(QWidget):
             self.data.inserted_data[i] = []
 
         for i in range(self.data.tworzyciele_no):
-            for j in range(self.data.produkty_no):
+            for j in range(len(self.columns)):
                 self.data.inserted_data[self.columns[j]].append(int(self.table.item(i, j).text()))
 
-        for index, name in enumerate(self.columns):
-            print(self.columns[index])
-            print(self.data.inserted_data[name])
+        # for index, name in enumerate(self.columns):
+        #     print(self.columns[index])
+        #     print(self.data.inserted_data[name])
+
+        pprint.pprint(self.data.inserted_data)
