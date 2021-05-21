@@ -22,7 +22,7 @@ class UIgetInfo(QWidget):
         self.tworzyciele_no.setValidator(QIntValidator())
 
         self.submit_btn = QPushButton("Dalej")
-        self.submit_btn.clicked.connect(self.get_data)
+        # self.submit_btn.clicked.connect(self.get_data)
 
         self.layout.addWidget(self.produkty)
         self.layout.addWidget(self.produkty_no)
@@ -34,6 +34,6 @@ class UIgetInfo(QWidget):
         self.setLayout(self.layout)
 
     def get_data(self):
-        self.data.produkty_no = self.produkty_no.text()
-        self.data.tworzyciele_no = self.tworzyciele_no.text()
+        self.data.produkty_no = int(self.produkty_no.text())
+        self.data.tworzyciele_no = int(self.tworzyciele_no.text())
         print(f"prod: {self.data.produkty_no}, tworzyciele: {self.data.tworzyciele_no}")
