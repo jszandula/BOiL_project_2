@@ -13,11 +13,11 @@ class UIgetInfo(QWidget):
     def initUI(self):
         self.layout = QFormLayout()
 
-        self.produkty = QLabel("Liczba produktow: ")
+        self.produkty = QLabel("Liczba produktow(kolummny): ")
         self.produkty_no = QLineEdit()
         self.produkty_no.setValidator(QIntValidator())
 
-        self.tworzyciele = QLabel("Liczba prducentow: ")
+        self.tworzyciele = QLabel("Srodki produkcji(wiersze): ")
         self.tworzyciele_no = QLineEdit()
         self.tworzyciele_no.setValidator(QIntValidator())
 

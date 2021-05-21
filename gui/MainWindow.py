@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget
 from settings import *
 from gui.UIgetInfo import UIgetInfo
 from gui.UIDataInput import UIDataInput
+from gui.UIResult import UIResult
 from Data import Data
 
 
@@ -27,9 +28,14 @@ class MainWindow(QMainWindow):
         self.setMinimumWidth(SCR_SIZE[0])
         self.setMinimumHeight(SCR_SIZE[1])
         self.UIDataInput = UIDataInput(self)
+        self.UIDataInput.submit_btn.clicked.connect(lambda: self.results())
         self.setCentralWidget(self.UIDataInput)
         self.show()
 
-
     def results(self):
         print("result")
+        self.setMinimumWidth(SCR_SIZE[0])
+        self.setMinimumHeight(SCR_SIZE[1])
+        self.UIResult = UIResult(self)
+        self.setCentralWidget(self.UIResult)
+        self.show()

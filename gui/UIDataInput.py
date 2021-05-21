@@ -13,8 +13,17 @@ class UIDataInput(QWidget):
     def initUI(self):
         self.layout = QGridLayout()
         self.createTable()
-        submit_button = QPushButton("Dalej")
 
+        buttonHBox = QHBoxLayout()
+        self.zapisz_dane = QPushButton("Zapisz dane")
+        self.zapisz_dane.clicked.connect(self.zapisz_dane_onclick)
+
+        self.submit_btn = QPushButton("Dalej")
+
+        buttonHBox.addWidget(self.zapisz_dane)
+        buttonHBox.addWidget(self.submit_btn)
+
+        self.layout.addLayout(buttonHBox, 1, 0)
 
         self.setLayout(self.layout)
 
@@ -22,11 +31,23 @@ class UIDataInput(QWidget):
         vbox = QVBoxLayout()
         # produkty sa dawane na koncu bo mozna by bylo ich dodawac w nieskonczonosc a kilka rzeczy zawszze musi byc w tej tabeli jak np cena
         # pomimo tego ze najlepsza cena to gratis :)
-        columns = ['Produkt', 'cena', 'max_produkt', 'max_fabryka', 'prod1', 'prod2']       
-        table = QTableWidget()
+        self.columns = ['Produkt', 'zyski_jednostkowe', 'max_produkt', 'min_produkt', 'max_fabryka', 'prod1', 'prod2']
+        self.table = QTableWidget()
         print(f"prod: {self.data.produkty_no}, tworzyciele: {self.data.tworzyciele_no}")
-        table.setRowCount(self.data.tworzyciele_no)
-        table.setColumnCount(self.data.produkty_no)
-        table.setHorizontalHeaderLabels(columns)
-        vbox.addWidget(table)
-        self.layout.addLayout(vbox,0,0)
+        self.table.setRowCount(self.data.tworzyciele_no)
+        self.table.setColumnCount(self.data.produkty_no)
+        self.table.setHorizontalHeaderLabels(self.columns)
+        vbox.addWidget(self.table)
+        self.layout.addLayout(vbox, 0, 0)
+
+    def zapisz_dane_onclick(self):
+        for i in self.columns:
+            self.data.inserted_data[i] = []
+
+        for i in range(self.data.tworzyciele_no):
+            for j in range(self.data.produkty_no):
+                self.data.inserted_data[self.columns[j]].append(int(self.table.item(i, j).text()))
+
+        for index, name in enumerate(self.columns):
+            print(self.columns[index])
+            print(self.data.inserted_data[name])

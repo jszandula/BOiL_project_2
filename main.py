@@ -32,6 +32,7 @@ problem += lpSum([tasma[f] * vars[f] for f in items]) <= producers_constraint[1]
 problem += vars[items[0]] <= products_constraint[0]
 problem += vars[items[1]] <= products_constraint[1]
 
+
 print(problem)
 problem.solve()
 for v in problem.variables():

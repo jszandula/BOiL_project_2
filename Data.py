@@ -3,7 +3,6 @@ from settings import *
 class Data:
     _instance = None
 
-
     @staticmethod
     def get_instance():
         if Data._instance == None:
@@ -18,3 +17,6 @@ class Data:
 
         self.tworzyciele_no = -1
         self.produkty_no = -1
+        self.inserted_data = {}     # data from table
+        self.wartosc_funkcji_celu = 0
+        self.produkty_ilosc = []
