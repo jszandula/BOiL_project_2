@@ -5,6 +5,7 @@ from gui.UIgetInfo import UIgetInfo
 from gui.UIDataInput import UIDataInput
 from gui.UIResult import UIResult
 from Data import Data
+from Optimization import Optimize
 
 
 class MainWindow(QMainWindow):
@@ -32,6 +33,8 @@ class MainWindow(QMainWindow):
         self.show()
 
     def results(self):
+        self.optimize = Optimize()
+        self.optimize.optimize()
         self.setMinimumWidth(SCR_SIZE[0])
         self.setMinimumHeight(SCR_SIZE[1])
         self.UIResult = UIResult(self)
