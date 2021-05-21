@@ -1,5 +1,6 @@
 from settings import *
 
+
 class Data:
     _instance = None
 
