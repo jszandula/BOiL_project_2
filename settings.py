@@ -1,1 +1,2 @@
 SCR_SIZE = (WIDTH, HEIGHT) = (600, 400)
+FAB_PROD = 'produkt'

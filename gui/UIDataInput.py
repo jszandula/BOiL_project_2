@@ -48,7 +48,7 @@ class UIDataInput(QWidget):
     def createTable2(self):
         vbox = QVBoxLayout()
         self.columns2 = ['max_fabryka']
-        prod_str = 'produkt'
+        prod_str = FAB_PROD
         for i in range(self.data.produkty_no):
             new_str = prod_str + str(i)
             self.columns2.append(new_str)
