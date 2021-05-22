@@ -18,17 +18,17 @@ class UIgetInfo(QWidget):
         self.produkty_no = QLineEdit()
         self.produkty_no.setValidator(QIntValidator())
 
-        self.tworzyciele = QLabel("Srodki produkcji(wiersze): ")
-        self.tworzyciele_no = QLineEdit()
-        self.tworzyciele_no.setValidator(QIntValidator())
+        self.srodki_produkcji_no = QLabel("Srodki produkcji(wiersze): ")
+        self.srodki_produkcji_no = QLineEdit()
+        self.srodki_produkcji_no.setValidator(QIntValidator())
 
         self.submit_btn = QPushButton("Dalej")
 
         '''LAYOUT'''
         self.layout.addWidget(self.produkty)
         self.layout.addWidget(self.produkty_no)
-        self.layout.addWidget(self.tworzyciele)
-        self.layout.addWidget(self.tworzyciele_no)
+        self.layout.addWidget(self.srodki_produkcji_no)
+        self.layout.addWidget(self.srodki_produkcji_no)
         self.layout.addWidget(self.submit_btn)
 
         self.setLayout(self.layout)
@@ -36,5 +36,5 @@ class UIgetInfo(QWidget):
     # OBSOLETE FUNC
     def get_data(self):
         self.data.produkty_no = int(self.produkty_no.text())
-        self.data.tworzyciele_no = int(self.tworzyciele_no.text())
-        print(f"prod: {self.data.produkty_no}, tworzyciele: {self.data.tworzyciele_no}")
+        self.data.srodki_produkcji_no = int(self.srodki_produkcji_no.text())
+        print(f"prod: {self.data.produkty_no}, srodki_produkcji_no: {self.data.srodki_produkcji_no}")

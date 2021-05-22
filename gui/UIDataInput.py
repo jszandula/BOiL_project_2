@@ -54,7 +54,7 @@ class UIDataInput(QWidget):
             self.columns2.append(new_str)
 
         self.table2 = QTableWidget()
-        self.table2.setRowCount(self.data.tworzyciele_no)
+        self.table2.setRowCount(self.data.srodki_produkcji_no)
         self.table2.setColumnCount(len(self.columns2))
         self.table2.setHorizontalHeaderLabels(self.columns2)
         vbox.addWidget(self.table2)
@@ -69,14 +69,14 @@ class UIDataInput(QWidget):
             columns.append(i)
 
         for i in columns:
-            self.data.inserted_data[i] = []
+            self.data.wstawione_dane[i] = []
 
         for i in range(self.data.produkty_no):
             for j in range(len(self.columns)):
-                self.data.inserted_data[self.columns[j]].append(int(self.table.item(i, j).text()))
+                self.data.wstawione_dane[self.columns[j]].append(int(self.table.item(i, j).text()))
 
-        for i in range(self.data.tworzyciele_no):
+        for i in range(self.data.srodki_produkcji_no):
             for j in range(len(self.columns2)):
-                self.data.inserted_data[self.columns2[j]].append(int(self.table2.item(i, j).text()))
+                self.data.wstawione_dane[self.columns2[j]].append(int(self.table2.item(i, j).text()))
 
-        pprint.pprint(self.data.inserted_data)
+        pprint.pprint(self.data.wstawione_dane)

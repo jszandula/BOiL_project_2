@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
 
     def data_input(self):
         self.data.produkty_no = int(self.UIgetInfo.produkty_no.text())
-        self.data.tworzyciele_no = int(self.UIgetInfo.tworzyciele_no.text())
+        self.data.srodki_produkcji_no = int(self.UIgetInfo.srodki_produkcji_no.text())
         self.setMinimumWidth(SCR_SIZE[0])
         self.setMinimumHeight(SCR_SIZE[1])
         self.UIDataInput = UIDataInput(self)
