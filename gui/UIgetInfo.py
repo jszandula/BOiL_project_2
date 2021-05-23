@@ -18,7 +18,7 @@ class UIgetInfo(QWidget):
         self.produkty_no = QLineEdit()
         self.produkty_no.setValidator(QIntValidator())
 
-        self.srodki_produkcji_no = QLabel("Srodki produkcji(wiersze): ")
+        self.srodki_produkcji = QLabel("Srodki produkcji(wiersze): ")
         self.srodki_produkcji_no = QLineEdit()
         self.srodki_produkcji_no.setValidator(QIntValidator())
 
@@ -27,7 +27,7 @@ class UIgetInfo(QWidget):
         '''LAYOUT'''
         self.layout.addWidget(self.produkty)
         self.layout.addWidget(self.produkty_no)
-        self.layout.addWidget(self.srodki_produkcji_no)
+        self.layout.addWidget(self.srodki_produkcji)
         self.layout.addWidget(self.srodki_produkcji_no)
         self.layout.addWidget(self.submit_btn)
 
