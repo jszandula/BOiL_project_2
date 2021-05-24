@@ -23,10 +23,10 @@ class Optimize:
         nazwy = ["P"+str(num) for num in nums]
         
         vars = [LpVariable(name, None, cat="Integer") for name in nazwy]
-        problem += lpSum(int(zyski[i]) * vars[i] for i in range(0, self.data.produkty_no))
+        problem += lpSum(float(zyski[i]) * vars[i] for i in range(0, self.data.produkty_no))
 
         for i in range(self.data.srodki_produkcji_no):
-            problem += lpSum([int(naklady[j][i]) * vars[j] for j in range(len(vars))]) <= gorne_ograniczenie_fabryki[i]
+            problem += lpSum([float(naklady[j][i]) * vars[j] for j in range(len(vars))]) <= gorne_ograniczenie_fabryki[i]
 
         for i in range(self.data.produkty_no):
             problem += lpSum([vars[i]]) <= gorne_ograniczenie_produktu[i]

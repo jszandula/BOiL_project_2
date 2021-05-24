@@ -73,10 +73,10 @@ class UIDataInput(QWidget):
 
         for i in range(self.data.produkty_no):
             for j in range(len(self.columns)):
-                self.data.wstawione_dane[self.columns[j]].append(int(self.table.item(i, j).text()))
+                self.data.wstawione_dane[self.columns[j]].append(float(self.table.item(i, j).text()))
 
         for i in range(self.data.srodki_produkcji_no):
             for j in range(len(self.columns2)):
-                self.data.wstawione_dane[self.columns2[j]].append(int(self.table2.item(i, j).text()))
+                self.data.wstawione_dane[self.columns2[j]].append(float(self.table2.item(i, j).text()))
 
         pprint.pprint(self.data.wstawione_dane)

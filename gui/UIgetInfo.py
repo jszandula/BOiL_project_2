@@ -14,11 +14,11 @@ class UIgetInfo(QWidget):
         self.layout = QFormLayout()
 
         '''COMPONENTS'''
-        self.produkty = QLabel("Liczba produktow(kolummny): ")
+        self.produkty = QLabel("Liczba produktow: ")
         self.produkty_no = QLineEdit()
         self.produkty_no.setValidator(QIntValidator())
 
-        self.srodki_produkcji = QLabel("Srodki produkcji(wiersze): ")
+        self.srodki_produkcji = QLabel("Srodki produkcji: ")
         self.srodki_produkcji_no = QLineEdit()
         self.srodki_produkcji_no.setValidator(QIntValidator())
 
@@ -35,6 +35,6 @@ class UIgetInfo(QWidget):
 
     # OBSOLETE FUNC
     def get_data(self):
-        self.data.produkty_no = int(self.produkty_no.text())
-        self.data.srodki_produkcji_no = int(self.srodki_produkcji_no.text())
+        self.data.produkty_no = float(self.produkty_no.text())
+        self.data.srodki_produkcji_no = float(self.srodki_produkcji_no.text())
         print(f"prod: {self.data.produkty_no}, srodki_produkcji_no: {self.data.srodki_produkcji_no}")
